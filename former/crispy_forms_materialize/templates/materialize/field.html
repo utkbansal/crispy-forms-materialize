@@ -14,32 +14,39 @@
                     {% crispy_field field %}
                 {% endif %}
 
-                <label for="{{ field.id_for_label }}"
-                       {% if field.field.required %}class="required"{% endif %}>
-                    {{ field.label|safe }}{% if field.field.required %}
-                        <span class="asterisk"> *</span>{% endif %}
-                </label>
+                {% if field|is_file %}
+                    {% include 'materialize/layout/file.html' %}
+                {% endif %}
+                
+                {# do not add label to file field #}
+                {% if not field|is_file %}
+
+                    <label for="{{ field.id_for_label }}"
+                           {% if field.field.required %}class="required"{% endif %}>
+                        {{ field.label|safe }}{% if field.field.required %}
+                            <span class="asterisk"> *</span>{% endif %}
+                    </label>
+
+                {% endif %}
             {% endif %}
 
             {% if field|is_checkboxselectmultiple %}
                 {% include 'materialize/layout/checkboxselectmultiple.html' %}
             {% endif %}
 
-            {#        CUSTOM CODE  ###############}
+            {###############  CUSTOM CODE  ###############}
 
             {% if field|is_textarea %}
                 {% include 'materialize/layout/textarea.html' %}
             {% endif %}
 
-            {% if field|is_file %}
-                {% include 'materialize/layout/file.html' %}
-            {% endif %}
+
 
             {% if field|is_radioselect %}
                 {% include 'materialize/layout/radio_select.html' %}
             {% endif %}
 
-            {% if not field|is_checkbox and not field|is_checkboxselectmultiple and not field|is_textarea and not field|is_file  and not field|is_radioselect%}
+            {% if not field|is_checkbox and not field|is_checkboxselectmultiple and not field|is_textarea and not field|is_file  and not field|is_radioselect %}
                 {% crispy_field field %}
             {% endif %}
 

@@ -18,7 +18,7 @@ class RegisterForm(forms.Form):
     decimal_number = forms.DecimalField()
     email = forms.EmailField()
     # Problems in rendering
-    file = forms.FileField()
+    photo = forms.FileField()
     # No support in materializecss
     interests = forms.MultipleChoiceField(choices=choices)
     comment = forms.CharField(widget=forms.Textarea)
