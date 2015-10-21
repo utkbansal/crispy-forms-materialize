@@ -17,14 +17,13 @@
                 {% if field|is_file %}
                     {% include 'materialize/layout/file.html' %}
                 {% endif %}
-                
+
                 {# do not add label to file field #}
                 {% if not field|is_file %}
 
                     <label for="{{ field.id_for_label }}"
                            {% if field.field.required %}class="required"{% endif %}>
-                        {{ field.label|safe }}{% if field.field.required %}
-                            <span class="asterisk"> *</span>{% endif %}
+                        {{ field.label|safe }}
                     </label>
 
                 {% endif %}
