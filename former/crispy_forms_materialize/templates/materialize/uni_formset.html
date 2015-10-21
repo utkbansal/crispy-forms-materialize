@@ -1,0 +1,8 @@
+{% with formset.management_form as form %}
+    {% include 'materialize/uni_form.html' %}
+{% endwith %}
+{% for form in formset.forms %}
+    <div class="multiple-fields">
+        {% include 'materialize/uni_form.html' %}
+    </div>
+{% endfor %}
