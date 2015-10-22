@@ -1,0 +1,15 @@
+<button class="btn
+        {% if submit.field_classes %}{{ submit.field_classes }}{% endif %}"
+        type="submit"
+        name="{% if submit.name|wordcount > 1 %}{{ submit.name|slugify }}
+        {% else %}
+        {{ submit.name }}
+        {% endif %}">{{ submit.value }}
+    {% if submit.icon %}
+        <i class="material-icons
+                {% if submit.position %}
+                {{ submit.position }}
+                {% else %}left{% endif %}">
+            {{ submit.icon }}</i>
+    {% endif %}
+</button>

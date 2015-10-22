@@ -1,8 +1,7 @@
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout
 
-from crispy_forms_materialize.layout import Card, Submit, Button
-
+from crispy_forms_materialize.layout import Card, Submit
 from django import forms
 
 choices = (('a', 'a'), ('s', 's'))
@@ -38,8 +37,9 @@ class RegisterForm(forms.Form):
                 # 'interests',
                 'comment',
                 # 'sex',
-                Submit('submit', 'Go!'),
-                Button('Bhej Do!', 'send', 'right', css_class='waves-effect'),
+                Submit('submit', 'Go!', 'send', 'right',
+                       css_class='waves-effect'),
+                # Button('Bhej Do!', 'send', 'right', css_class='waves-effect'),
                 css_class='col m6 offset-m3'
             )
         )

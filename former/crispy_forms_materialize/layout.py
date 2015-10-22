@@ -73,6 +73,35 @@ class Button(TemplateNameMixin):
         return render_to_string(template, {'button': self}, context)
 
 
+class Submit(TemplateNameMixin):
+    template = "%s/layout/submit.html"
+
+    def __init__(self, name, value, icon=None, position=None, **kwargs):
+        self.name = name
+        self.value = value
+        self.id = kwargs.pop('css_id', '')
+        self.attrs = {}
+        self.icon = icon
+        self.position = position
+        self.field_classes = ''
+
+        if 'css_class' in kwargs:
+            self.field_classes += kwargs.pop('css_class')
+
+        self.template = kwargs.pop('template', self.template)
+        self.flat_attrs = flatatt(kwargs)
+
+    def render(self, form, form_style, context, template_pack=TEMPLATE_PACK,
+               **kwargs):
+        """
+        Renders an `<input />` if container is used as a Layout object.
+        Input button value can be a variable in context.
+        """
+        self.value = Template(text_type(self.value)).render(context)
+        template = self.get_template_name(template_pack)
+        return render_to_string(template, {'submit': self}, context)
+
+
 ############## CUSTOM CARD ####################
 
 # Not rendering properly
@@ -159,16 +188,18 @@ class InlineField(Field):
 #     field_classes = 'btn waves-effect waves-light'
 
 
-class Submit(crispy_forms_layout.Submit):
-    """
-    Used to create a Submit button descriptor for the {% crispy %}
-    template tag:
-    .. sourcecode:: python
-        submit = Submit('Search the Site', 'search this site')
-    .. note:: The first argument is also slugified and turned into the id for the submit button.
-    """
-    input_type = 'submit'
-    field_classes = 'btn waves-effect waves-light'
+########################3 USELESS SUBMIT BUTTON #############################
+#
+# class Submit(crispy_forms_layout.Submit):
+#     """
+#     Used to create a Submit button descriptor for the {% crispy %}
+#     template tag:
+#     .. sourcecode:: python
+#         submit = Submit('Search the Site', 'search this site')
+#     .. note:: The first argument is also slugified and turned into the id for the submit button.
+#     """
+#     input_type = 'submit'
+#     field_classes = 'btn waves-effect waves-light'
 
 
 class Hidden(crispy_forms_layout.Hidden):
