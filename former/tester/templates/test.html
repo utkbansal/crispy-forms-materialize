@@ -12,13 +12,15 @@
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
 
 </head>
 <body>
 <div class="row">
-    <div class="col m6 card hoverable offset-m3">
-        {% crispy form %}
-    </div>
+    {#    <div class="col m6 card hoverable offset-m3">#}
+    {% crispy form %}
+    {#    </div>#}
 </div>
 
 {# <script>#}

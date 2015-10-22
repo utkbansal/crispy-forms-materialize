@@ -1,11 +1,12 @@
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout
-from crispy_forms_materialize.layout import Card
+
+from crispy_forms_materialize.layout import Card, Submit, Button
 
 from django import forms
 
-
 choices = (('a', 'a'), ('s', 's'))
+
 
 class RegisterForm(forms.Form):
     married = forms.BooleanField()
@@ -22,19 +23,23 @@ class RegisterForm(forms.Form):
     # No support in materializecss
     interests = forms.MultipleChoiceField(choices=choices)
     comment = forms.CharField(widget=forms.Textarea)
-    sex = forms.ChoiceField(widget=forms.RadioSelect, choices =choices)
+    sex = forms.ChoiceField(widget=forms.RadioSelect, choices=choices)
 
     def __init__(self, *args, **kwargs):
         super(RegisterForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
 
-        # self.helper.layout = Layout(
-        #     Card(
-        #         'married',
-        #         'name',
-        #         'bithday',
-        #         'file',
-        #         'sex'
-        #
-        #     )
-        # )
+        self.helper.layout = Layout(
+            Card(
+                'married',
+                'name',
+                'bithday',
+                'file',
+                # 'interests',
+                'comment',
+                # 'sex',
+                Submit('submit', 'Go!'),
+                Button('Bhej Do!', 'send', 'right', css_class='waves-effect'),
+                css_class='col m6 offset-m3'
+            )
+        )
