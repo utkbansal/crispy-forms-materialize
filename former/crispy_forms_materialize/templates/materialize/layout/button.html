@@ -1,5 +1,3 @@
-<a class="btn {% if button.field_classes %}{{ button.field_classes }}{% endif %}" >
-    {% if button.icon %}
-        <i class="material-icons {% if button.position %}{{ button.position }} {% else %}left{% endif %}">{{ button.icon }}</i>
-    {% endif %}
-{{ button.value }}</a>
+{% spaceless %}
+    <a class="btn {% if button.field_classes %}{{ button.field_classes }}{% endif %}">{% if button.icon %}<i class="material-icons {% if button.position %}{{ button.position }} {% else %}left{% endif %}">{{ button.icon }}</i>{% endif %}{{ button.value }}</a>
+{% endspaceless %}
