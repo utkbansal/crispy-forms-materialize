@@ -9,6 +9,10 @@
          class="input-field col s12 {% if field.errors and form_show_errors %} error{% endif %}{% if field|is_checkbox %} checkbox{% endif %}{% if field|is_file %}file-field{% endif %}{% if field.css_classes %} {{ field.css_classes }}{% endif %}">
         {% spaceless %}
 
+            {% if field|is_select %}
+                {% include 'materialize/layout/select.html' %}
+            {% endif %}
+
             {% if field.label %}
                 {% if field|is_checkbox %}
                     {% crispy_field field %}
@@ -19,7 +23,7 @@
                 {% endif %}
 
                 {# do not add label to file field #}
-                {% if not field|is_file %}
+                {% if not field|is_file and not field|is_select %}
 
                     <label for="{{ field.id_for_label }}"
                            {% if field.field.required %}class="required"{% endif %}>
@@ -45,7 +49,7 @@
                 {% include 'materialize/layout/radio_select.html' %}
             {% endif %}
 
-            {% if not field|is_checkbox and not field|is_checkboxselectmultiple and not field|is_textarea and not field|is_file  and not field|is_radioselect %}
+            {% if not field|is_checkbox and not field|is_checkboxselectmultiple and not field|is_textarea and not field|is_file  and not field|is_radioselect and not field|is_select %}
                 {% crispy_field field %}
             {% endif %}
 

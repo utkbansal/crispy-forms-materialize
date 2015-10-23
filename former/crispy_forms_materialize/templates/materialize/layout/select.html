@@ -1,0 +1,7 @@
+<select id="{{ field.id_for_label }}">
+    {% for choice in field.field.choices %}
+        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+    {% endfor %}
+</select>
+<label {% if field.field.required %}class="required"{% endif %}
+       for="{{ field.id_for_label }}">{{ field.label|safe }}</label>
