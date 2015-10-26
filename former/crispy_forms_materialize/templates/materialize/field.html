@@ -17,7 +17,7 @@
          class="input-field col s12 {% if field.errors and form_show_errors %} error{% endif %}{% if field|is_checkbox %} checkbox{% endif %}{% if field|is_file %}file-field{% endif %}{% if field.css_classes %} {{ field.css_classes }}{% endif %}">
         {% spaceless %}
 
-            {% if field|is_select %}
+            {% if field|is_select and not field|is_radioselect %}
 
                 {% include 'materialize/layout/select.html' %}
             {% endif %}
