@@ -2,6 +2,14 @@
 
 {% load field_check %}
 
+{#NOTE- the type of field is being recognized by using the isinstance function#}
+{#with the widget class. The problem is that isintance returns True even if we #}
+{#compare the object to its class parent (superclass). Hence a rediofield which is#}
+{#an object of RadioSelect class is also seen as a select field (dropdown) because#}
+{#RadioSelect is a subclass of Select(which is the widget class for select field)#}
+
+
+
 {% if field.is_hidden %}
     {{ field }}
 {% else %}
@@ -10,6 +18,7 @@
         {% spaceless %}
 
             {% if field|is_select %}
+
                 {% include 'materialize/layout/select.html' %}
             {% endif %}
 
