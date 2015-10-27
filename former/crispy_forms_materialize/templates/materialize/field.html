@@ -32,6 +32,7 @@
                 {% endif %}
 
                 {# do not add label to file field #}
+                {# Here label is also not added if field is radioselect #}
                 {% if not field|is_file and not field|is_select %}
 
                     <label for="{{ field.id_for_label }}"
