@@ -77,4 +77,7 @@ And finally the template
 
 Which finally leads into something like this - 
 
+![Screenshot of rendered HTML]
+(https://raw.githubusercontent.com/utkbansal/crispy-forms-materialize/master/Screenshot.png)
+
 Note - We did not have to write any css to style the form. It was auto-generated from the form class.
