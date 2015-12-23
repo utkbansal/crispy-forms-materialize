@@ -14,7 +14,7 @@
     {{ field }}
 {% else %}
     <div id="div_{{ field.auto_id }}"
-         class="input-field col s12 {% if field.errors and form_show_errors %} error{% endif %}{% if field|is_checkbox %} checkbox{% endif %}{% if field|is_file %}file-field{% endif %}{% if field.css_classes %} {{ field.css_classes }}{% endif %}">
+         class=" {% if not field|is_radioselect %}input-field{% endif %} col s12 {% if field.errors and form_show_errors %} error{% endif %}{% if field|is_checkbox %} checkbox{% endif %}{% if field|is_file %}file-field{% endif %}{% if field.css_classes %} {{ field.css_classes }}{% endif %}">
         {% spaceless %}
 
             {% if field|is_select and not field|is_radioselect %}
@@ -77,5 +77,6 @@
                      class="hint grey-text lighten-1">{{ field.help_text|safe }}</div>
             {% endif %}
 
-        {% endspaceless %}</div>
+        {% endspaceless %}
+    </div>
 {% endif %}
